@@ -33,13 +33,17 @@ class ConsultationResource extends Resource
                     ->relationship('patient', 'nom')
                     ->searchable()
                     ->preload()
-                    ->required(),
+                    ->required()
+                    ->getOptionLabelFromRecordUsing(fn ($record) => $record->nom . ' (' . $record->id . ')'),
+                
                 Select::make('medecin_id')
-                    ->label('Medecin')
+                    ->label('Médecin')
                     ->relationship('medecin', 'nom')
                     ->searchable()
                     ->preload()
-                    ->required(),
+                    ->required()
+                    ->getOptionLabelFromRecordUsing(fn ($record) => $record->nom . ' (' . $record->id . ')'),
+                
             ]);
     }
 

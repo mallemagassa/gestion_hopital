@@ -2,16 +2,17 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\LitResource\Pages;
-use App\Filament\Resources\LitResource\RelationManagers;
 use App\Models\Lit;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
+use Filament\Resources\Resource;
+use Filament\Forms\Components\Select;
 use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Resources\LitResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\LitResource\RelationManagers;
 
 class LitResource extends Resource
 {
@@ -28,7 +29,13 @@ class LitResource extends Resource
                     ->maxLength(255),
                 Forms\Components\Textarea::make('description')
                     ->required()
-                    ->columnSpanFull(),
+                    ->columnSpanFull(), //salle_id
+                Select::make('salle_id')
+                    ->label('Salle')
+                    ->relationship('salle', 'nom')
+                    ->searchable()
+                    ->preload()
+                    ->required(),
             ]);
     }
 

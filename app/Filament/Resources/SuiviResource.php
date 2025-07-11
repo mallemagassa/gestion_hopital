@@ -36,12 +36,14 @@ class SuiviResource extends Resource
                     ->relationship('patient', 'nom')
                     ->searchable()
                     ->preload()
+                    ->getOptionLabelFromRecordUsing(fn ($record) => $record->nom . ' (' . $record->id . ')')
                     ->required(),
                 Select::make('infirmier_id')
                     ->label('Infirmier')
                     ->relationship('infirmier', 'nom')
                     ->searchable()
                     ->preload()
+                    ->getOptionLabelFromRecordUsing(fn ($record) => $record->nom . ' (' . $record->id . ')')
                     ->required(),
             ]);
     }

@@ -29,7 +29,7 @@ class PrescriptionResource extends Resource
                     ->required(),
                 Select::make('consultation_id')
                     ->label('Consultation')
-                    ->relationship('consultation.medecin', 'matricule')
+                    ->relationship('consultation', 'id')
                     ->searchable()
                     ->preload()
                     ->required(),
@@ -53,7 +53,7 @@ class PrescriptionResource extends Resource
                 Tables\Columns\TextColumn::make('date')
                     ->date()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('consultation.medecin.matricule')
+                Tables\Columns\TextColumn::make('consultation.id')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('medicaments')
